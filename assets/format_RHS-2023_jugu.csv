@@ -1,0 +1,69 @@
+Libellé des variables,Taille,Position début,Position fin,Obligatoire
+Filler1,10,1,10,O
+N° de version du format du RHS groupé,3,11,13,O
+Numéro FINESS d’inscription ePMSI,9,14,22,O
+N° de version du format du RHS,3,23,25,O
+Numéro de séjour SSR,7,26,32,O
+Numéro administratif de séjour,20,33,52,O
+Version classification,2,53,54,O
+CM,2,55,56,O
+Code,2,57,58,O
+NR,1,59,59,O
+NL,1,60,60,
+sévérité,1,61,61,O
+Code retour,3,62,64,O
+Indicateur d’erreur,1,65,65,O
+Date de début de séjour,8,66,73,O
+Date de fin de séjour,8,74,81,F
+Date de naissance,8,82,89,O
+Sexe,1,90,90,O
+Code postal du lieu de résidence,5,91,95,O
+Type d’hospitalisation,1,96,96,O
+Date d’entrée dans l'unité médicale,8,97,104,O
+Mode d’entrée dans l'unité médicale,1,105,105,O
+Provenance,1,106,106,F
+Date de sortie de l'unité médicale,8,107,114,F
+Mode de sortie,1,115,115,F
+Destination,1,116,116,F
+Numéro de la semaine,6,117,122,O
+Journées hors week-end,5,123,127,O
+Journées week-end,2,128,129,O
+Numéro unité médicale,4,130,133,O
+Type d'autorisation de l'unité médicale,3,134,136,O
+Date de l’intervention chirurgicale,8,137,144,F
+Filler2,8,145,152,O
+Manifestation morbide principale,8,153,160,O
+Affection étiologique,8,161,168,F
+Dépendance à l’habillage° ou à la toilette,1,169,169,F
+Dépendance au déplacement°,1,170,170,F
+Dépendance à l’alimentation°,1,171,171,F
+Dépendance à la continence°,1,172,172,F
+Dépendance au comportement°,1,173,173,F
+Dépendance à la relation°,1,174,174,F
+Nombre de diagnostics associés dans ce RHS (n1),2,175,176,O
+Nombre d'actes CSARR dans ce RHS (n2),3,177,179,O
+Nombre d'actes CCAM dans ce RHS (n3),2,180,181,O
+Poursuite du même projet thérapeutique,1,182,182,O
+Filler3,1,183,183,NA
+Lit identifié soins palliatifs (LISP),2,184,185,F
+Type d'unité spécifique,2,186,187,O
+DAS,8,,,O
+CSARR – Code principal,7,,,O
+CSARR – Code supplémentaire (appareillage),3,,,F
+CSARR – Code modulateur de lieu,2,,,F
+CSARR – Code modulateur de patient,2,,,F
+CSARR – Code modulateur de technicité,2,,,F
+CSARR – Code intervenant,2,,,O
+CSARR – Filler,1,,,
+CSARR – Nombre de réalisations,2,,,O
+CSARR – Date de réalisation,8,,,O
+CSARR – Nombre réel de patients,2,,,O
+CSARR – Nombre d’intervenants,2,,,F
+CSARR – Extension Documentaire,2,,,F
+CCAM - Date de réalisation,8,,,F
+CCAM – Code CCAM,7,,,O
+CCAM – Extension PMSI,3,,,F
+CCAM – Code de la phase,1,,,O
+CCAM – Code de l'activité,1,,,O
+CCAM – Extension documentaire,1,,,F
+CCAM – Nombre de réalisations,2,,,O
