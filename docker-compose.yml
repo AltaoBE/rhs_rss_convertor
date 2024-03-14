@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  streamlit_app:
+    build: .
+    ports:
+      - "9998:9998"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://0.0.0.0:9998/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
