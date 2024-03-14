@@ -4,6 +4,7 @@ import pandas as pd
 import time  # Import the time module
 from data_extractor import DynamicFieldCSVReader  # Assuming the class is saved as dynamic_field_csv_reader.py
 
+st.set_page_config(page_title="RSS/RHS Data Extractor", page_icon="🧪")
 # Set the directory where the CSV format files are stored
 CSV_FORMAT_FILES_DIR = './assets'
 PASSWORD = "99999999."  # Set your password here
