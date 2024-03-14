@@ -17,4 +17,4 @@ EXPOSE 9998
 
 HEALTHCHECK CMD curl --fail http://localhost:9998/_stcore/health
 
-ENTRYPOINT ["streamlit", "run", "streamlit_app.py", "--server.port=9998", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "main.py", "--server.port=9998", "--server.address=0.0.0.0"]
