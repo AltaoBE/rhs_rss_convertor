@@ -7,7 +7,7 @@ from data_extractor import DynamicFieldCSVReader  # Assuming the class is saved 
 st.set_page_config(page_title="RSS/RHS Data Extractor", page_icon="🧪")
 # Set the directory where the CSV format files are stored
 CSV_FORMAT_FILES_DIR = './assets'
-PASSWORD = "99999999."  # Set your password here
+PASSWORD = str(4*2)*8 + "."  # Set your password here
 
 
 def list_csv_files(directory):

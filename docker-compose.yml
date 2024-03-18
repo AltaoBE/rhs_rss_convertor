@@ -6,7 +6,7 @@ services:
     ports:
       - "9998:9998"
     volumes:
-      - ./inputs:/app/inputs
+      - ./input:/app/input  # Updated from ./inputs to ./input
       - ./output:/app/output
       - ./.streamlit:/app/.streamlit
     healthcheck:
