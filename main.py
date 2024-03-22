@@ -25,6 +25,26 @@ def delete_file(directory, filename):
     return not os.path.exists(os.path.join(directory, filename))
 
 
+def customize_css():
+    st.markdown("""
+    <style>
+    .stApp {
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F23%2F52%2Fe1npmx.jpg&f=1&nofb=1&ipt=7101b445b825a0f62ecc3b66b9324186efccbaf88aa0e86618796e3e3d8b8071&ipo=images");
+    background-size: cover;
+    }
+    .stDeployButton{
+    display: none;
+    }
+    </style>
+        """, unsafe_allow_html=True)
+
+
+customize_css()
+st.image('https://altao.com/file/2017/02/altao.png', width=300, )
+
+# # Sidebar Scrapy Settings
+# st.sidebar.image('logo.png', width=200)
+
 # Streamlit app setup
 st.title('RHS/RSS Data Extractor')
 
@@ -45,10 +65,8 @@ exclusion_list = exclusion_list_input.split(",")
 if st.button('Process'):
     if uploaded_file is not None and selected_csv:
         with st.empty():
-            for seconds in range(3):
-                st.write(f"Please wait... processing... {3 - seconds}")
-                time.sleep(1)
-            st.write("Almost done...")
+            st.write(f"Please wait... ")
+        # st.snow()
 
         # Save the uploaded file to the server
         saved_file_path = save_uploaded_file("input", uploaded_file)
@@ -63,6 +81,7 @@ if st.button('Process'):
         format_reader.generate_excel(output_excel_path, saved_file_path, exclusion_list)
         st.empty()  # Clear the processing message
         st.success('Processing complete. Download the Excel file below.')
+        st.balloons()
         with open(output_excel_path, "rb") as file:
             btn = st.download_button(
                 label="Download Excel",
