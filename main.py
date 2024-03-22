@@ -35,6 +35,9 @@ def customize_css():
     .stDeployButton{
     display: none;
     }
+    header{
+    display: none;
+    }
     </style>
         """, unsafe_allow_html=True)
 
@@ -130,8 +133,10 @@ st.markdown(
 
 hide_streamlit_style = """
                 <style>
-                #MainMenu {visibility: hidden;}
-                footer {visibility: hidden;}
+                #MainMenu {display: none;}
+                footer {display: none;}
+                #root header{display: none;}
+                .stDecoration{display: none;}
                 </style>
                 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
