@@ -90,7 +90,7 @@ class DynamicFieldCSVReader:
         info = {}
 
         for var_name, (start, end) in self.format_info.items():
-            value = text_line[start:end] if start is not None and end is not None else "Not Found"
+            value = text_line[start-1:end] if start is not None and end is not None else "Not Found"
             # Check if this is a date field and convert it if it is
             if 'Date' in var_name:
                 value = self._convert_date(value)
@@ -138,7 +138,7 @@ class DynamicFieldCSVReader:
 
         return final_df
 
-    def generate_excel(self, output_path, rhs_file_path,  exclusion_list=None, column_width=20):
+    def generate_excel(self, output_path, rhs_file_path, exclusion_list=None, column_width=None):  #
         if exclusion_list is None:
             exclusion_list = []
 
@@ -158,11 +158,13 @@ class DynamicFieldCSVReader:
         for col in worksheet.columns:
             for cell in col:
                 cell.alignment = Alignment(wrap_text=True)
-            worksheet.column_dimensions[get_column_letter(col[0].column)].width = column_width
+            if column_width is not None:
+                worksheet.column_dimensions[get_column_letter(col[0].column)].width = column_width
+            else:
+                worksheet.column_dimensions[get_column_letter(col[0].column)].auto_size = True
 
         # Save the workbook
         writer.close()
-
 
 # Example usage:
 
@@ -178,90 +180,3 @@ class DynamicFieldCSVReader:
 # format_reader.generate_excel(output_excel_path, exclusion_list)
 #
 # print(f"Data extracted and written to styled Excel file at: {output_excel_path}")
-
-# Rest of the class remains unchanged ...
-
-# @staticmethod
-# def apply_styles(workbook, df, exclusion_list=None):
-#     """
-#     Apply styles to the workbook based on the dataframe's data types and exclusion list.
-#
-#     :param workbook: The openpyxl Workbook object
-#     :param df: DataFrame with the extracted information
-#     :param exclusion_list: List of columns to exclude from styling
-#     """
-#     if exclusion_list is None:
-#         exclusion_list = []
-#
-#     # Access the first worksheet in the workbook
-#     worksheet = workbook.active
-#
-#     # Define styles
-#     header_font = Font(bold=True)
-#     header_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")  # Yellow
-#     date_fill = PatternFill(start_color="FF9999", end_color="FF9999", fill_type="solid")  # Light red
-#     int_fill = PatternFill(start_color="99CCFF", end_color="99CCFF", fill_type="solid")  # Light blue
-#
-#     # Apply header styles
-#     for col_num, column_title in enumerate(df.columns, start=1):
-#         cell = worksheet.cell(row=1, column=col_num)
-#         cell.font = header_font
-#         cell.fill = header_fill
-#         if column_title in exclusion_list:
-#             worksheet.column_dimensions[cell.column_letter].hidden = True
-#
-#     # Apply data styles
-#     for col_num, column_title in enumerate(df.columns, start=1):
-#         if column_title in exclusion_list:
-#             continue
-#         for row_num, item in enumerate(df[column_title], start=2):
-#             cell = worksheet.cell(row=row_num, column=col_num)
-#             if 'Date' in column_title:
-#                 cell.fill = date_fill
-#             elif isinstance(item, int):
-#                 cell.fill = int_fill
-#
-# def generate_and_style_excel(self, file_path, output_excel_path, exclusion_list=None):
-#     """
-#     Generate an Excel file from a text file and apply styles to it.
-#
-#     :param file_path: Path to the text file to process
-#     :param output_excel_path: Path where the styled Excel file will be saved
-#     :param exclusion_list: List of column headers to exclude from the Excel file
-#     """
-#     # First, generate the DataFrame by processing the text file
-#     df = self.process_file(file_path)
-#
-#     # Define colors for headers and data types
-#     header_font = Font(bold=True)
-#     header_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")  # Yellow
-#     date_fill = PatternFill(start_color="FF9999", end_color="FF9999", fill_type="solid")  # Light red
-#     int_fill = PatternFill(start_color="99CCFF", end_color="99CCFF", fill_type="solid")  # Light blue
-#
-#     # Now, use Pandas Excel writer with the openpyxl engine
-#     with pd.ExcelWriter(output_excel_path, engine='openpyxl') as writer:
-#         # Write DataFrame to Excel
-#         df.to_excel(writer, index=False, sheet_name='Sheet1')
-#         # Get the openpyxl workbook and worksheet objects
-#         workbook = writer.book
-#         worksheet = writer.sheets['Sheet1']
-#
-#         # Apply header styles
-#         for col in worksheet.iter_cols(min_row=1, max_row=1, max_col=len(df.columns)):
-#             for cell in col:
-#                 if cell.value not in exclusion_list:
-#                     cell.font = header_font
-#                     cell.fill = header_fill
-#
-#         # Apply data styles
-#         for col in worksheet.iter_cols(min_row=2, max_col=len(df.columns)):
-#             for cell in col:
-#                 if cell.value is not None:
-#                     column_letter = cell.column_letter
-#                     header_value = worksheet[f"{column_letter}1"].value
-#                     if 'Date' in header_value:
-#                         cell.fill = date_fill
-#                     elif isinstance(cell.value, int):
-#                         cell.fill = int_fill
-#                     if header_value in exclusion_list:
-#                         worksheet.column_dimensions[column_letter].hidden = True
