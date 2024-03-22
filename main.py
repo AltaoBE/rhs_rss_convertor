@@ -64,8 +64,11 @@ exclusion_list = exclusion_list_input.split(",")
 # Button to process the uploaded text file
 if st.button('Process'):
     if uploaded_file is not None and selected_csv:
-        with st.empty():
-            st.write(f"Please wait... ")
+        st.empty()
+        # st.image('./img/loader.gif', width=300)
+        st.info('Please wait...')
+
+
         # st.snow()
 
         # Save the uploaded file to the server
